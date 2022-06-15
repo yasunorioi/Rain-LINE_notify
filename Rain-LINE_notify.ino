@@ -52,22 +52,15 @@ void loop() {
 
 void send_line() {
 
-  // HTTPSへアクセス（SSL通信）するためのライブラリ
   WiFiClientSecure client;
-
-  // サーバー証明書の検証を行わずに接続する場合に必要
   client.setInsecure();
-  
   Serial.println("Try");
-  
-  //LineのAPIサーバにSSL接続（ポート443:https）
+  //Line API
   if (!client.connect(host, 443)) {
     Serial.println("Connection failed");
     return;
   }
   Serial.println("Connected");
-
-  // リクエスト送信
   String query = String("message=") + String(message);
   String request = String("") +
                "POST /api/notify HTTP/1.1\r\n" +
@@ -78,7 +71,7 @@ void send_line() {
                 query + "\r\n";
   client.print(request);
  
-  // 受信完了まで待機 
+  // Response wait...
   while (client.connected()) {
     String line = client.readStringUntil('\n');
     if (line == "\r") {
