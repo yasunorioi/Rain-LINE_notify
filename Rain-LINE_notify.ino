@@ -18,7 +18,7 @@
 // LINE Notify
 const char* host = "notify-api.line.me";
 const char* message = "戸磯 雨センサーbot！";
-const char* LINE_TOKEN = "vi0ImFzWKBTydImc92UsPHzGEnM52wyJionPjcYYs7S";
+const char* LINE_TOKEN = "";
 
 void setup() {
   // put your setup code here, to run once:
